@@ -81,6 +81,11 @@ PORT = process.env.PORT || 5000;
 // app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
+app.get("/",(req,res) => {
+  console.log("Responding to root route")
+  res.send("Hello from rooot");
+})
+
 app.get('/users', function (request, response) {
   ///response.send('Hello World!')
   connection.query('SELECT * FROM new_table', function (error, rows, fields) {
