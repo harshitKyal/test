@@ -15,7 +15,7 @@ var connection = sql.createConnection({
 });
 //middleware to process your request
 app.use(bodyparser.urlencoded({extended: false}))
-app.use(morgan('combined'))
+//app.use(morgan('combined'))
 
 connection.connect(function (error) {
   //callback function
