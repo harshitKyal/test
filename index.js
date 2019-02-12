@@ -66,7 +66,6 @@ app.get('/user/:id',function(request,response)  {
   }) 
   //response.end();
 })
-
 app.delete('/user/:id',(request,response)=>{
   const userId = request.params.id
   const queryString = "delete  from new_table where id = ?"
