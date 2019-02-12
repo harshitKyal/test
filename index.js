@@ -1,6 +1,9 @@
+
 var express = require('express')
+var morgan = require('morgan')
+
 var app = express()
-const morgan = require('morgan')
+
 var sql = require('mysql')
 
 app.use(express.static('./frontend'))
@@ -8,10 +11,14 @@ const bodyparser = require('body-parser')
 
 var connection = sql.createConnection({
   //properties
-  host: 'localhost',
-  user: 'root',
-  password: 'Rootuser',
-  database: 'testing'
+  // host: 'localhost',
+  // user: 'root',
+  // password: 'Rootuser',
+  // database: 'testing'
+  host: "us-cdbr-iron-east-03.cleardb.net",
+  user: "bdfc9edf72b113",
+  password: "4ca98ad0",
+  database: "heroku_b7e47628176e054"
 });
 ///middleware to process your request
 app.use(bodyparser.urlencoded({ extended: false }))
@@ -24,12 +31,10 @@ connection.connect(function (error) {
   } else {
     console.log('connected');
   }
-
 });
 
 app.post("/user_create", (request, response) => {
   console.log("trying to create  new user")
-
   console.log("firNAme" + request.body.create_first_name)
   const firstName = request.body.create_first_name
   const lastName = request.body.create_last_name
@@ -81,7 +86,7 @@ PORT = process.env.PORT || 5000;
 // app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
-app.get("/",(req,res) => {
+app.get("/", (req, res) => {
   console.log("Responding to root route")
   res.send("Hello from rooot");
 })
