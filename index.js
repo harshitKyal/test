@@ -13,7 +13,7 @@ var connection = sql.createConnection({
   password: 'Rootuser',
   database: 'testing'
 });
-//middleware to process your request
+///middleware to process your request
 app.use(bodyparser.urlencoded({extended: false}))
 //app.use(morgan('combined'))
 
