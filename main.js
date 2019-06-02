@@ -4848,8 +4848,8 @@ var ApiService = /** @class */ (function () {
     };
     ApiService.prototype.apiCaller = function (type, url, data) {
         //  this.uri = this.api + url;
-        // this.uri = 'http://localhost:8100' + url;
-        this.uri = 'http://api.testautotech.xyz' + url;
+        this.uri = 'http://localhost:8100' + url;
+        //  this.uri = 'http://api.testautotech.xyz' + url;
         if (type === 'get') {
             return this.get(this.uri);
         }
@@ -4989,10 +4989,11 @@ var AuthService = /** @class */ (function () {
                 console.log('result login', result);
                 // const res = JSON.parse(result);
                 localStorage.setItem('isLogged', 'true');
-                _this.currentUser.next({ 'user': result[0].data.user, 'user_permission': result[0].data.user_permission, 'token': result[0].data.token });
+                _this.currentUser.next({ 'user': result[0].data.user, 'user_permission': result[0].data.user_permission, 'token': result[0].data.token, 'group_user_ids': result[0].data.group_user_ids });
                 localStorage.setItem('currentUser', JSON.stringify(result[0].data.user));
                 localStorage.setItem('currentUserPermission', JSON.stringify(result[0].data.user_permission));
                 localStorage.setItem('currentUserToken', JSON.stringify(result[0].data.token));
+                localStorage.setItem('currentGroupUserIds', JSON.stringify(result[0].data.group_user_ids));
             }
             return result;
         }).catch(function (error) { return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].throw(error || 'Server error'); });

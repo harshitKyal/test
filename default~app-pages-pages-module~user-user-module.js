@@ -19087,6 +19087,9 @@ var ViewUserComponent = /** @class */ (function () {
             'user_name', 'first_name', 'last_name', 'company_id'
         ];
         this.userPermission = [];
+        this.viewGroup = false;
+        this.viewOwn = false;
+        this.viewAll = false;
         this.viewAllDataPermission = false;
         this.viewOwnDataPermission = false;
         this.viewGroupDataPermission = false;
@@ -19094,9 +19097,12 @@ var ViewUserComponent = /** @class */ (function () {
         this.userReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
             if (ele != null) {
+                console.log("element");
+                console.log(ele);
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
                 _this.userPermission = ele.user_permission;
+                _this.currentUserGroupUserIds = ele.group_user_ids;
             }
         });
         this.setColumns();
@@ -19137,25 +19143,36 @@ var ViewUserComponent = /** @class */ (function () {
         var _this = this;
         this.userList = [];
         this.rowData = [];
+        this.viewAll = false;
+        this.viewGroup = false;
+        this.viewOwn = false;
         this.userReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
         if (value) {
             this.radioSelected = value;
         }
         if (this.viewOwnDataPermission && this.radioSelected == 1) {
             this.userReqObj.created_by = this.currentUserId;
+            this.viewOwn = true;
         }
         if (this.viewGroupDataPermission && this.radioSelected == 2) {
             this.userReqObj.created_by = this.currentUserId;
             this.userReqObj.user_head_id = this.currentUser.user_head_id;
+            this.userReqObj.group_user_ids = this.currentUserGroupUserIds;
+            this.viewGroup = true;
         }
         if (this.viewAllDataPermission && this.radioSelected == 3) {
             this.userReqObj.created_by = null;
             this.userReqObj.user_head_id = null;
+            this.viewAll = true;
         }
         var body = {
             created_by: this.userReqObj.created_by,
             user_head_id: this.userReqObj.user_head_id,
-            currentUserId: this.currentUserId
+            current_user_Id: this.currentUserId,
+            current_user_group_user_ids: this.userReqObj.group_user_ids,
+            view_own: this.viewOwn,
+            view_all: this.viewAll,
+            view_group: this.viewGroup
         };
         this.userService.getUserList(body).subscribe(function (data) {
             if (!data[0].error) {

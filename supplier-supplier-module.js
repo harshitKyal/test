@@ -61,6 +61,7 @@ var ViewReqObj = /** @class */ (function () {
     function ViewReqObj() {
         this.created_by = null;
         this.user_head_id = null;
+        this.group_user_ids = null;
     }
     return ViewReqObj;
 }());
