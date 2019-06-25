@@ -83,6 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _theme_model_party_class__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../@theme/model/party-class */ "./src/app/@theme/model/party-class.ts");
 /* harmony import */ var _theme_services_party_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../@theme/services/party.service */ "./src/app/@theme/services/party.service.ts");
+/* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -97,15 +98,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AddEditPartyComponent = /** @class */ (function () {
-    function AddEditPartyComponent(toasterService, route, router, partyService) {
+    function AddEditPartyComponent(toasterService, route, router, partyService, authService) {
+        var _this = this;
         this.toasterService = toasterService;
         this.route = route;
         this.router = router;
         this.partyService = partyService;
+        this.authService = authService;
         this.subBtnName = '';
         this.topHeader = '';
+        this.currentUserPermission = [];
         this.partyModal = new _theme_model_party_class__WEBPACK_IMPORTED_MODULE_3__["Party"]();
+        this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
+            if (ele != null) {
+                _this.currentUser = ele.user;
+                _this.currentUserId = ele.user.user_id;
+                _this.currentUserHeadid = ele.user.user_head_id;
+                _this.currentUserPermission = ele.user_permission;
+            }
+        });
     }
     AddEditPartyComponent.prototype.ngOnInit = function () {
         this.onPageLoad();
@@ -134,7 +147,7 @@ var AddEditPartyComponent = /** @class */ (function () {
     };
     AddEditPartyComponent.prototype.numberOnly = function (event) {
         var charCode = (event.which) ? event.which : event.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode > 31 && ((charCode < 46 || charCode > 57) || charCode == 47)) {
             return false;
         }
         return true;
@@ -143,6 +156,7 @@ var AddEditPartyComponent = /** @class */ (function () {
         var _this = this;
         //for update
         if (this.id) {
+            this.partyModal.updated_by = this.currentUserId;
             this.partyService.updateParty(this.partyModal).subscribe(function (data) {
                 if (!data[0].error) {
                     _this.toasterService.success(data[0].message);
@@ -158,6 +172,9 @@ var AddEditPartyComponent = /** @class */ (function () {
         }
         else {
             //for add
+            this.partyModal.created_by = this.currentUserId;
+            this.partyModal.user_head_id = this.currentUserHeadid;
+            console.log("party Modal");
             console.log(this.partyModal);
             this.partyService.addParty(this.partyModal).subscribe(function (data) {
                 // data = data[0]
@@ -181,7 +198,7 @@ var AddEditPartyComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./add-edit-party.component.scss */ "./src/app/pages/party/add-edit-party/add-edit-party.component.scss")]
         }),
         __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_1__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _theme_services_party_service__WEBPACK_IMPORTED_MODULE_4__["PartyService"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _theme_services_party_service__WEBPACK_IMPORTED_MODULE_4__["PartyService"], _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
     ], AddEditPartyComponent);
     return AddEditPartyComponent;
 }());
@@ -489,6 +506,7 @@ var ViewPartyComponent = /** @class */ (function () {
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
                 _this.currentUserPermission = ele.user_permission;
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
             }
         });
         this.setColumns();
@@ -503,6 +521,9 @@ var ViewPartyComponent = /** @class */ (function () {
                     _this.viewAllDataPermission = ele.can_view_all;
                     _this.viewGroupDataPermission = ele.can_view_group;
                     _this.viewOwnDataPermission = ele.can_view;
+                    _this.partyReqObj.current_user_id = _this.currentUserId;
+                    _this.partyReqObj.user_head_id = _this.currentUser.user_head_id;
+                    _this.partyReqObj.group_user_ids = _this.currentUserGroupUserIds;
                 }
             });
         }
@@ -513,24 +534,20 @@ var ViewPartyComponent = /** @class */ (function () {
     };
     ViewPartyComponent.prototype.getPartyData = function (value) {
         var _this = this;
-        this.partyReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_10__["ViewReqObj"]();
-        if (value) {
+        this.partyReqObj.view_all = false;
+        this.partyReqObj.view_group = false;
+        this.partyReqObj.view_own = false;
+        if (value)
             this.radioSelected = value;
-        }
-        if (this.viewOwnDataPermission && this.radioSelected == 1) {
-            this.partyReqObj.created_by = this.currentUserId;
-        }
-        if (this.viewGroupDataPermission && this.radioSelected == 2) {
-            this.partyReqObj.created_by = this.currentUserId;
-            this.partyReqObj.user_head_id = this.currentUser.user_head_id;
-        }
-        if (this.viewAllDataPermission && this.radioSelected == 3) {
-            this.partyReqObj.created_by = null;
-            this.partyReqObj.user_head_id = null;
-        }
+        //check which radio button is selected
+        if (this.radioSelected == 1)
+            this.partyReqObj.view_own = true;
+        else if (this.radioSelected == 2)
+            this.partyReqObj.view_group = true;
+        else if (this.radioSelected == 3)
+            this.partyReqObj.view_all = true;
         this.partyService.getPartyList(this.partyReqObj).subscribe(function (data) {
             if (!data[0].error) {
-                console.log('data', data[0].data);
                 _this.partyList = data[0].data;
                 _this.rowData = data[0].data;
             }

@@ -4,7 +4,7 @@
 /*!************************************************!*\
   !*** ./src/app/@theme/model/supplier-class.ts ***!
   \************************************************/
-/*! exports provided: Supplier, SupplierRate, SupplierRateRecord */
+/*! exports provided: Supplier, SupplierRate, SupplierRateRecord, SupplierItemRecord */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Supplier", function() { return Supplier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupplierRate", function() { return SupplierRate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupplierRateRecord", function() { return SupplierRateRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupplierItemRecord", function() { return SupplierItemRecord; });
 var Supplier = /** @class */ (function () {
     function Supplier() {
     }
@@ -28,6 +29,12 @@ var SupplierRateRecord = /** @class */ (function () {
     function SupplierRateRecord() {
     }
     return SupplierRateRecord;
+}());
+
+var SupplierItemRecord = /** @class */ (function () {
+    function SupplierItemRecord() {
+    }
+    return SupplierItemRecord;
 }());
 
 
@@ -63,6 +70,9 @@ var SupplierService = /** @class */ (function () {
     }
     SupplierService.prototype.getAllSupplierData = function (obj) {
         return this.apiService.apiCaller('post', '/supplierList', obj);
+    };
+    SupplierService.prototype.getAllSupplierItemData = function () {
+        return this.apiService.apiCaller('get', '/supplierItemList');
     };
     SupplierService.prototype.addSupplier = function (supplier) {
         return this.apiService.apiCaller('post', '/addSupplier', supplier);
@@ -142,11 +152,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _theme_services_supplier_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../@theme/services/supplier.service */ "./src/app/@theme/services/supplier.service.ts");
-/* harmony import */ var _bill_in_add_edit_bill_in_add_edit_bill_in_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../bill-in/add-edit-bill-in/add-edit-bill-in.component */ "./src/app/pages/bill-in/add-edit-bill-in/add-edit-bill-in.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../@theme/components/confirm-dialog/confirm-dialog.component */ "./src/app/@theme/components/confirm-dialog/confirm-dialog.component.ts");
-/* harmony import */ var _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../@theme/model/user-class */ "./src/app/@theme/model/user-class.ts");
-/* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../@theme/components/confirm-dialog/confirm-dialog.component */ "./src/app/@theme/components/confirm-dialog/confirm-dialog.component.ts");
+/* harmony import */ var _theme_model_user_class__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../@theme/model/user-class */ "./src/app/@theme/model/user-class.ts");
+/* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
+/* harmony import */ var _fabric_in_add_edit_fabric_in_add_edit_fabric_in_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../fabric-in/add-edit-fabric-in/add-edit-fabric-in.component */ "./src/app/pages/fabric-in/add-edit-fabric-in/add-edit-fabric-in.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -185,11 +195,12 @@ var AddEditSupplierRateComponent = /** @class */ (function () {
             { headerName: 'Discount Rate', field: 'discount_rate' },
             { headerName: 'GST Rate', field: 'gst_rate' },
         ];
-        this.supplierReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
+        this.supplierReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_7__["ViewReqObj"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
             if (ele != null) {
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
             }
         });
         this.supplierRateRecord = new _theme_model_supplier_class__WEBPACK_IMPORTED_MODULE_1__["SupplierRateRecord"]();
@@ -205,7 +216,7 @@ var AddEditSupplierRateComponent = /** @class */ (function () {
         var _this = this;
         this.columnDefs.forEach(function (column) {
             if (column.field === 'index') {
-                column.cellRendererFramework = _bill_in_add_edit_bill_in_add_edit_bill_in_component__WEBPACK_IMPORTED_MODULE_5__["CustomRendererStockRecordComponent"];
+                column.cellRendererFramework = _fabric_in_add_edit_fabric_in_add_edit_fabric_in_component__WEBPACK_IMPORTED_MODULE_9__["CustomRendererStockRecordComponent"];
                 column.cellRendererParams = {
                     action: _this
                 };
@@ -217,7 +228,11 @@ var AddEditSupplierRateComponent = /** @class */ (function () {
     };
     AddEditSupplierRateComponent.prototype.getSupplierList = function () {
         var _this = this;
-        this.supplierReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
+        this.supplierReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_7__["ViewReqObj"]();
+        this.supplierReqObj.current_user_id = this.currentUserId;
+        this.supplierReqObj.user_head_id = this.currentUser.user_head_id;
+        this.supplierReqObj.group_user_ids = this.currentUserGroupUserIds;
+        this.supplierReqObj.view_group = true;
         this.supplierService.getAllSupplierData(this.supplierReqObj).subscribe(function (data) {
             if (!data[0].error) {
                 _this.supplierList = data[0].data;
@@ -355,7 +370,7 @@ var AddEditSupplierRateComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-edit-supplier-rate.component.html */ "./src/app/pages/supplier/add-edit-supplier-rate/add-edit-supplier-rate.component.html"),
             styles: [__webpack_require__(/*! ./add-edit-supplier-rate.component.scss */ "./src/app/pages/supplier/add-edit-supplier-rate/add-edit-supplier-rate.component.scss")]
         }),
-        __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"],
+        __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _theme_services_supplier_service__WEBPACK_IMPORTED_MODULE_4__["SupplierService"]])
     ], AddEditSupplierRateComponent);
     return AddEditSupplierRateComponent;
@@ -377,7 +392,7 @@ var CustomRendererSupplierRateComponent = /** @class */ (function () {
     };
     CustomRendererSupplierRateComponent.prototype.onDeleteRecord = function () {
         var _this = this;
-        var modalRef = this._modalService.open(_theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmDialogComponent"]);
+        var modalRef = this._modalService.open(_theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmDialogComponent"]);
         modalRef.componentInstance.titleFrom = 'Delete record ';
         modalRef.componentInstance.message = 'Are you sure you want to delete this record?';
         modalRef.result
@@ -392,7 +407,7 @@ var CustomRendererSupplierRateComponent = /** @class */ (function () {
             template: "\n  <i class=\"ft-edit-2 font-medium-1 mr-2\" style=\"color:#4ca6ff\" (click)=\"editRecord()\"></i>\n  <i class=\"ft-x font-medium-1 mr-2\" style=\"color:red\" (click)=\"onDeleteRecord()\"></i>",
             styles: [__webpack_require__(/*! ./add-edit-supplier-rate.component.scss */ "./src/app/pages/supplier/add-edit-supplier-rate/add-edit-supplier-rate.component.scss")]
         }),
-        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModal"], ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"], ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
     ], CustomRendererSupplierRateComponent);
     return CustomRendererSupplierRateComponent;
 }());
@@ -1063,6 +1078,7 @@ var ViewSuppliersComponent = /** @class */ (function () {
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
                 _this.currentUserPermission = ele.user_permission;
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
             }
         });
         this.setColumns();
@@ -1077,6 +1093,9 @@ var ViewSuppliersComponent = /** @class */ (function () {
                     _this.viewAllDataPermission = ele.can_view_all;
                     _this.viewGroupDataPermission = ele.can_view_group;
                     _this.viewOwnDataPermission = ele.can_view;
+                    _this.supplierReqObj.current_user_id = _this.currentUserId;
+                    _this.supplierReqObj.user_head_id = _this.currentUser.user_head_id;
+                    _this.supplierReqObj.group_user_ids = _this.currentUserGroupUserIds;
                 }
                 if (ele.form_name === 'Supplier Rate') {
                     _this.addSupplierRatePermission = 1;
@@ -1114,21 +1133,18 @@ var ViewSuppliersComponent = /** @class */ (function () {
     };
     ViewSuppliersComponent.prototype.getSupplierData = function (value) {
         var _this = this;
-        this.supplierReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_9__["ViewReqObj"]();
-        if (value) {
+        this.supplierReqObj.view_all = false;
+        this.supplierReqObj.view_group = false;
+        this.supplierReqObj.view_own = false;
+        if (value)
             this.radioSelected = value;
-        }
-        if (this.viewOwnDataPermission && this.radioSelected == 1) {
-            this.supplierReqObj.created_by = this.currentUserId;
-        }
-        if (this.viewGroupDataPermission && this.radioSelected == 2) {
-            this.supplierReqObj.created_by = this.currentUserId;
-            this.supplierReqObj.user_head_id = this.currentUser.user_head_id;
-        }
-        if (this.viewAllDataPermission && this.radioSelected == 3) {
-            this.supplierReqObj.created_by = null;
-            this.supplierReqObj.user_head_id = null;
-        }
+        //check which radio button is selected
+        if (this.radioSelected == 1)
+            this.supplierReqObj.view_own = true;
+        else if (this.radioSelected == 2)
+            this.supplierReqObj.view_group = true;
+        else if (this.radioSelected == 3)
+            this.supplierReqObj.view_all = true;
         this.supplierService.getAllSupplierData(this.supplierReqObj).subscribe(function (data) {
             if (!data[0].error) {
                 _this.rowData = data[0].data;

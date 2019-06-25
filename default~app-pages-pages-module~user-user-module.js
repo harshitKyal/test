@@ -18545,7 +18545,7 @@ module.exports = "<nb-card>\n  <nb-card-header>{{topHeader}}\n  </nb-card-header
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".errors {\n  color: red;\n  font-size: 13px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2hhcnNoaXQvRGVza3RvcC9uZ3gtd2lyZWZyYW1lL3NyYy9hcHAvcGFnZXMvdXNlci9hZGQtZWRpdC11c2VyL2FkZC1lZGl0LXVzZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFVO0VBQ1YsZ0JBQWUsRUFDbEIiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy91c2VyL2FkZC1lZGl0LXVzZXIvYWRkLWVkaXQtdXNlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvcnMge1xuICAgIGNvbG9yOiByZWQ7XG4gICAgZm9udC1zaXplOiAxM3B4O1xufSJdfQ== */"
+module.exports = ".errors {\n  color: red;\n  font-size: 13px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy92YXJ1bmd1cHRhL0Rlc2t0b3AvYS9uZ3gtd2lyZWZyYW1lL3NyYy9hcHAvcGFnZXMvdXNlci9hZGQtZWRpdC11c2VyL2FkZC1lZGl0LXVzZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFVO0VBQ1YsZ0JBQWUsRUFDbEIiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy91c2VyL2FkZC1lZGl0LXVzZXIvYWRkLWVkaXQtdXNlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvcnMge1xuICAgIGNvbG9yOiByZWQ7XG4gICAgZm9udC1zaXplOiAxM3B4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -18595,7 +18595,7 @@ var AddEditUserComponent = /** @class */ (function () {
         this.permissionArray = ['have_quality', 'can_add_quality', 'can_view_quality', 'can_edit_quality', 'can_delete_quality',
             'have_user', 'can_add_user', 'can_view_user', 'can_edit_user', 'can_delete_user', 'have_party', 'can_add_party', 'can_edit_party', 'can_view_party', 'can_delete_party',
             'have_stock', 'can_add_stock', 'can_edit_stock', 'can_view_stock', 'can_delete_stock'];
-        this.tableForms = ["Party", "Quality", "User", "Bill", "Lot", "Program", "Shade", "Supplier", "Supplier Rate"];
+        this.tableForms = ["Party", "Quality", "User", "Fabric In", "Batch", "Program", "Shade", "Supplier", "Supplier Rate", "Shade", "Program", "Colour Stock", "Process"];
         this.designation = ['Manager', 'Master', 'Accountant', 'Staff', 'Helper'];
         this.isAdmin = false;
         this.companyList = [];
@@ -18679,8 +18679,6 @@ var AddEditUserComponent = /** @class */ (function () {
     };
     AddEditUserComponent.prototype.onAssign = function (value) {
         this.showUserNameListFlag = value.returnValue;
-        alert(this.showUserNameListFlag);
-        alert(value.returnValue);
     };
     AddEditUserComponent.prototype.getUsers = function () {
         var _this = this;
@@ -18746,7 +18744,7 @@ var AddEditUserComponent = /** @class */ (function () {
     };
     AddEditUserComponent.prototype.numberOnly = function (event) {
         var charCode = (event.which) ? event.which : event.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        if (charCode > 31 && ((charCode < 46 || charCode > 57) || charCode == 47)) {
             return false;
         }
         return true;
@@ -19102,9 +19100,6 @@ var ViewUserComponent = /** @class */ (function () {
             'user_name', 'first_name', 'last_name', 'company_id'
         ];
         this.userPermission = [];
-        this.viewGroup = false;
-        this.viewOwn = false;
-        this.viewAll = false;
         this.viewAllDataPermission = false;
         this.viewOwnDataPermission = false;
         this.viewGroupDataPermission = false;
@@ -19112,12 +19107,10 @@ var ViewUserComponent = /** @class */ (function () {
         this.userReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
             if (ele != null) {
-                console.log("element");
-                console.log(ele);
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
                 _this.userPermission = ele.user_permission;
-                _this.currentUserGroupUserIds = ele.group_user_ids;
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
             }
         });
         this.setColumns();
@@ -19133,6 +19126,9 @@ var ViewUserComponent = /** @class */ (function () {
                     _this.viewAllDataPermission = ele.can_view_all;
                     _this.viewGroupDataPermission = ele.can_view_group;
                     _this.viewOwnDataPermission = ele.can_view;
+                    _this.userReqObj.current_user_id = _this.currentUserId;
+                    _this.userReqObj.user_head_id = _this.currentUser.user_head_id;
+                    _this.userReqObj.group_user_ids = _this.currentUserGroupUserIds;
                 }
             });
         }
@@ -19158,40 +19154,19 @@ var ViewUserComponent = /** @class */ (function () {
         var _this = this;
         this.userList = [];
         this.rowData = [];
-        this.viewAll = false;
-        this.viewGroup = false;
-        this.viewOwn = false;
-        this.userReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_8__["ViewReqObj"]();
-        if (value) {
+        this.userReqObj.view_all = false;
+        this.userReqObj.view_group = false;
+        this.userReqObj.view_own = false;
+        if (value)
             this.radioSelected = value;
-        }
-        if (this.viewOwnDataPermission && this.radioSelected == 1) {
-            this.userReqObj.created_by = this.currentUserId;
-            this.viewOwn = true;
-        }
-        if (this.viewGroupDataPermission && this.radioSelected == 2) {
-            this.userReqObj.created_by = this.currentUserId;
-            this.userReqObj.user_head_id = this.currentUser.user_head_id;
-            this.userReqObj.group_user_ids = this.currentUserGroupUserIds;
-            this.viewGroup = true;
-        }
-        if (this.viewAllDataPermission && this.radioSelected == 3) {
-            this.userReqObj.created_by = null;
-            this.userReqObj.user_head_id = null;
-            this.viewAll = true;
-        }
-        console.log("user pobpdsdsfdsfdsfdsfds");
-        console.log(this.userReqObj);
-        var body = {
-            created_by: this.userReqObj.created_by,
-            user_head_id: this.userReqObj.user_head_id,
-            current_user_Id: this.currentUserId,
-            current_user_group_user_ids: this.userReqObj.group_user_ids,
-            view_own: this.viewOwn,
-            view_all: this.viewAll,
-            view_group: this.viewGroup
-        };
-        this.userService.getUserList(body).subscribe(function (data) {
+        //check which radio button is selected
+        if (this.radioSelected == 1)
+            this.userReqObj.view_own = true;
+        else if (this.radioSelected == 2)
+            this.userReqObj.view_group = true;
+        else if (this.radioSelected == 3)
+            this.userReqObj.view_all = true;
+        this.userService.getUserList(this.userReqObj).subscribe(function (data) {
             if (!data[0].error) {
                 _this.userList = data[0].data;
                 _this.rowData = data[0].data;
@@ -19210,10 +19185,10 @@ var ViewUserComponent = /** @class */ (function () {
             columnKeys: this.columnExportDefs
         };
         var data = this.gridApi.getDataAsCsv(params);
-        console.log(data);
+        // console.log(data);
         this.papa.parse(data, {
             complete: function (result) {
-                console.log('Parsed: ', result);
+                // console.log('Parsed: ', result);
                 _this.getObject(result.data);
                 _this.exportExcel(result.data);
             }

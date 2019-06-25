@@ -15,7 +15,7 @@ var Quality = /** @class */ (function () {
         this.quality_name = '';
         this.quality_type = '';
         this.quality_sub_type = '';
-        this.party_name = '';
+        this.party_id = '';
     }
     return Quality;
 }());
@@ -102,7 +102,7 @@ var QzTrayService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nb-card>\n  <nb-card-header>{{topHeader}}\n  </nb-card-header>\n  <nb-card-body>\n    <form (ngSubmit)=\"onCustomFormSubmit(vform)\" #vform=\"ngForm\">\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Id</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_id\" name=\"qualityId\"\n              #QualityId=\"ngModel\" required />\n            <div *ngIf=\"QualityId.invalid && (QualityId.dirty || QualityId.touched)\" class=\"errors\">\n              <div *ngIf=\"QualityId.errors && QualityId.errors.required\">\n                Quality Id is required.\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Name</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_name\" name=\"qualityname\"\n              #qualityName=\"ngModel\" required />\n            <div *ngIf=\"qualityName.invalid && (qualityName.dirty || qualityName.touched)\" class=\"errors\">\n              <div *ngIf=\"qualityName.errors && qualityName.errors.required\">\n                Quality Name is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Type</label>\n            <!-- pattern -->\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_type\" name=\"qualitytype\"\n              #qualityType=\"ngModel\" required (change)=\"onTypeChange($event.target.value)\">\n              <option disabled value=\"\">Select Qulaity Type\n              </option>\n              <option *ngFor=\"let quality of qualityTypeList\" [value]=\"quality.quality_type_name\">\n                {{quality.quality_type_name}}</option>\n            </select>\n            <div *ngIf=\"qualityType.invalid && (qualityType.dirty || qualityType.touched)\" class=\"errors\">\n              <div *ngIf=\"qualityType.errors && qualityType.errors.required\">\n                Quality Type is required.\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Sub-Type</label>\n            <!-- pattern -->\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_sub_type\" name=\"qualitysubtype\"\n              #qualitySubType=\"ngModel\">\n              <option disabled value=\"\">Select Quality Sub Type\n              </option>\n              <option *ngFor=\"let quality of qualitySubTypeList\" [value]=\"quality.quality_sub_type\">\n                {{quality.quality_sub_type}}</option>\n            </select>\n            <div *ngIf=\"qualitySubType.invalid && (qualitySubType.dirty || qualitySubType.touched)\" class=\"errors\">\n              <div *ngIf=\"qualitySubType.errors && qualitySubType.errors.required\">\n                Quality Sub Type is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Party Name</label>\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.party_name\" name=\"partyname\" #partyName=\"ngModel\"\n              required>\n              <option disabled value=\"\">Select Party Name</option>\n              <option *ngFor=\"let p of partyNameList\" [value]=\"p.ID\">{{p.Name}}</option>\n            </select>\n            <div *ngIf=\"partyName.invalid && (partyName.dirty || partyName.touched)\" class=\"errors\">\n              <div *ngIf=\"partyName.errors && partyName.errors.required\">\n                Party Name is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Wt / 100 mtrs</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.wt_per100m\" name=\"weight\" />\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label>Remark</label>\n            <textarea type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.remark\" name=\"remark\"> </textarea>\n          </div>\n        </div>\n      </div>\n      <div class=\"box-footer\">\n        <button nbButton translate>{{subBtnName}}</button> &nbsp;\n        <button nbButton type=\"reset\" routerLink='/pages/quality/view-quality' class=\"btn btn-default\"\n          id=\"Cancel\">Cancel</button>\n      </div>\n    </form>\n  </nb-card-body>\n</nb-card>\n\n<!-- \n<div class=\"row text-left\">\n  <div class=\"col-sm-12\">\n    <div class=\"content-header\" translate>{{topHeader}}</div>\n  </div>\n</div> -->\n\n<!-- Custom Form Validaton Starts -->\n<!-- <div class=\"row text-left\">\n  <div class=\"col-sm-12\">\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <div class=\"card-block\">\n          <form (ngSubmit)=\"onCustomFormSubmit(vform)\" #vform=\"ngForm\">\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Id</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_id\" name=\"qualityId\"\n                    #QualityId=\"ngModel\" required />\n                  <div *ngIf=\"QualityId.invalid && (QualityId.dirty || QualityId.touched)\" class=\"errors\">\n                    <div *ngIf=\"QualityId.errors && QualityId.errors.required\">\n                      Quality Id is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Name</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_name\" name=\"qualityname\"\n                    #qualityName=\"ngModel\" required />\n                  <div *ngIf=\"qualityName.invalid && (qualityName.dirty || qualityName.touched)\" class=\"errors\">\n                    <div *ngIf=\"qualityName.errors && qualityName.errors.required\">\n                      Quality Name is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Type</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_type\" name=\"qualitytype\"\n                    #qualityType=\"ngModel\" required (change)=\"onTypeChange($event.target.value)\">\n                    <option disabled value=\"\">Select Qulaity Type\n                    </option>\n                    <option *ngFor=\"let quality of qualityTypeList\" [value]=\"quality.quality_type_name\">\n                      {{quality.quality_type_name}}</option>\n                  </select>\n                  <div *ngIf=\"qualityType.invalid && (qualityType.dirty || qualityType.touched)\" class=\"errors\">\n                    <div *ngIf=\"qualityType.errors && qualityType.errors.required\">\n                      Quality Type is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Sub-Type</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_sub_type\" name=\"qualitysubtype\"\n                    #qualitySubType=\"ngModel\">\n                    <option disabled value=\"\">Select Quality Sub Type\n                    </option>\n                    <option *ngFor=\"let quality of qualitySubTypeList\" [value]=\"quality.quality_sub_type\">\n                      {{quality.quality_sub_type}}</option>\n                  </select>\n                  <div *ngIf=\"qualitySubType.invalid && (qualitySubType.dirty || qualitySubType.touched)\"\n                    class=\"errors\">\n                    <div *ngIf=\"qualitySubType.errors && qualitySubType.errors.required\">\n                      Quality Sub Type is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Party Name</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.party_name\" name=\"partyname\"\n                    #partyName=\"ngModel\" required>\n                    <option disabled value=\"\">Select Party Name</option>\n                    <option *ngFor=\"let p of partyNameList\" [value]=\"p.ID\">{{p.Name}}</option>\n                  </select>\n                  <div *ngIf=\"partyName.invalid && (partyName.dirty || partyName.touched)\" class=\"errors\">\n                    <div *ngIf=\"partyName.errors && partyName.errors.required\">\n                      Party Name is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Wt / 100 mtrs</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.wt_per100m\" name=\"weight\" />\n                </div>\n              </div>\n            </div>\n\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label>Remark</label>\n                  <textarea type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.remark\"\n                    name=\"remark\"> </textarea>\n                </div>\n              </div>\n            </div>\n            <div class=\"box-footer\">\n              <button class=\"btn btn-raised btn-primary\" translate>{{subBtnName}}</button> &nbsp;\n              <button type=\"reset\" routerLink='/quality/view-quality' class=\"btn btn-default\"\n                id=\"Cancel\">Cancel</button>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div> -->\n<!-- Custom Form Validaton Ends -->"
+module.exports = "<nb-card>\n  <nb-card-header>{{topHeader}}\n  </nb-card-header>\n  <nb-card-body>\n    <form (ngSubmit)=\"onCustomFormSubmit(vform)\" #vform=\"ngForm\">\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Id</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_id\" name=\"qualityId\"\n              #QualityId=\"ngModel\" required />\n            <div *ngIf=\"QualityId.invalid && (QualityId.dirty || QualityId.touched)\" class=\"errors\">\n              <div *ngIf=\"QualityId.errors && QualityId.errors.required\">\n                Quality Id is required.\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Name</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_name\" name=\"qualityname\"\n              #qualityName=\"ngModel\" required />\n            <div *ngIf=\"qualityName.invalid && (qualityName.dirty || qualityName.touched)\" class=\"errors\">\n              <div *ngIf=\"qualityName.errors && qualityName.errors.required\">\n                Quality Name is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Type</label>\n            <!-- pattern -->\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_type\" name=\"qualitytype\"\n              #qualityType=\"ngModel\" required (change)=\"onTypeChange($event.target.value)\">\n              <option disabled value=\"\">Select Qulaity Type\n              </option>\n              <option *ngFor=\"let quality of qualityTypeList\" [value]=\"quality.quality_type_name\">\n                {{quality.quality_type_name}}</option>\n            </select>\n            <div *ngIf=\"qualityType.invalid && (qualityType.dirty || qualityType.touched)\" class=\"errors\">\n              <div *ngIf=\"qualityType.errors && qualityType.errors.required\">\n                Quality Type is required.\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Quality Sub-Type</label>\n            <!-- pattern -->\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_sub_type\" name=\"qualitysubtype\"\n              #qualitySubType=\"ngModel\">\n              <option disabled value=\"\">Select Quality Sub Type\n              </option>\n              <option *ngFor=\"let quality of qualitySubTypeList\" [value]=\"quality.quality_sub_type\">\n                {{quality.quality_sub_type}}</option>\n            </select>\n            <div *ngIf=\"qualitySubType.invalid && (qualitySubType.dirty || qualitySubType.touched)\" class=\"errors\">\n              <div *ngIf=\"qualitySubType.errors && qualitySubType.errors.required\">\n                Quality Sub Type is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Party Name</label>\n            <select class=\"form-control\" [(ngModel)]=\"qualityModal.party_id\" name=\"partyname\" #partyName=\"ngModel\"\n              required>\n              <option disabled value=\"\">Select Party Name</option>\n              <option *ngFor=\"let p of partyNameList\" [value]=\"p.entry_id\">{{p.party_name}}</option>\n            </select>\n            <div *ngIf=\"partyName.invalid && (partyName.dirty || partyName.touched)\" class=\"errors\">\n              <div *ngIf=\"partyName.errors && partyName.errors.required\">\n                Party Name is required.\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <div class=\"form-group\">\n            <label>Wt / 100 mtrs</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.wt_per100m\" name=\"weight\" />\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <div class=\"form-group\">\n            <label>Remark</label>\n            <textarea type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.remark\" name=\"remark\"> </textarea>\n          </div>\n        </div>\n      </div>\n      <div class=\"box-footer\">\n        <button nbButton translate>{{subBtnName}}</button> &nbsp;\n        <button nbButton type=\"reset\" routerLink='/pages/quality/view-quality' class=\"btn btn-default\"\n          id=\"Cancel\">Cancel</button>\n      </div>\n    </form>\n  </nb-card-body>\n</nb-card>\n\n<!-- \n<div class=\"row text-left\">\n  <div class=\"col-sm-12\">\n    <div class=\"content-header\" translate>{{topHeader}}</div>\n  </div>\n</div> -->\n\n<!-- Custom Form Validaton Starts -->\n<!-- <div class=\"row text-left\">\n  <div class=\"col-sm-12\">\n    <div class=\"card\">\n      <div class=\"card-body\">\n        <div class=\"card-block\">\n          <form (ngSubmit)=\"onCustomFormSubmit(vform)\" #vform=\"ngForm\">\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Id</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_id\" name=\"qualityId\"\n                    #QualityId=\"ngModel\" required />\n                  <div *ngIf=\"QualityId.invalid && (QualityId.dirty || QualityId.touched)\" class=\"errors\">\n                    <div *ngIf=\"QualityId.errors && QualityId.errors.required\">\n                      Quality Id is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Name</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.quality_name\" name=\"qualityname\"\n                    #qualityName=\"ngModel\" required />\n                  <div *ngIf=\"qualityName.invalid && (qualityName.dirty || qualityName.touched)\" class=\"errors\">\n                    <div *ngIf=\"qualityName.errors && qualityName.errors.required\">\n                      Quality Name is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Type</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_type\" name=\"qualitytype\"\n                    #qualityType=\"ngModel\" required (change)=\"onTypeChange($event.target.value)\">\n                    <option disabled value=\"\">Select Qulaity Type\n                    </option>\n                    <option *ngFor=\"let quality of qualityTypeList\" [value]=\"quality.quality_type_name\">\n                      {{quality.quality_type_name}}</option>\n                  </select>\n                  <div *ngIf=\"qualityType.invalid && (qualityType.dirty || qualityType.touched)\" class=\"errors\">\n                    <div *ngIf=\"qualityType.errors && qualityType.errors.required\">\n                      Quality Type is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Quality Sub-Type</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.quality_sub_type\" name=\"qualitysubtype\"\n                    #qualitySubType=\"ngModel\">\n                    <option disabled value=\"\">Select Quality Sub Type\n                    </option>\n                    <option *ngFor=\"let quality of qualitySubTypeList\" [value]=\"quality.quality_sub_type\">\n                      {{quality.quality_sub_type}}</option>\n                  </select>\n                  <div *ngIf=\"qualitySubType.invalid && (qualitySubType.dirty || qualitySubType.touched)\"\n                    class=\"errors\">\n                    <div *ngIf=\"qualitySubType.errors && qualitySubType.errors.required\">\n                      Quality Sub Type is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Party Name</label>\n                  <select class=\"form-control\" [(ngModel)]=\"qualityModal.party_name\" name=\"partyname\"\n                    #partyName=\"ngModel\" required>\n                    <option disabled value=\"\">Select Party Name</option>\n                    <option *ngFor=\"let p of partyNameList\" [value]=\"p.ID\">{{p.Name}}</option>\n                  </select>\n                  <div *ngIf=\"partyName.invalid && (partyName.dirty || partyName.touched)\" class=\"errors\">\n                    <div *ngIf=\"partyName.errors && partyName.errors.required\">\n                      Party Name is required.\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                  <label>Wt / 100 mtrs</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.wt_per100m\" name=\"weight\" />\n                </div>\n              </div>\n            </div>\n\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                  <label>Remark</label>\n                  <textarea type=\"text\" class=\"form-control\" [(ngModel)]=\"qualityModal.remark\"\n                    name=\"remark\"> </textarea>\n                </div>\n              </div>\n            </div>\n            <div class=\"box-footer\">\n              <button class=\"btn btn-raised btn-primary\" translate>{{subBtnName}}</button> &nbsp;\n              <button type=\"reset\" routerLink='/quality/view-quality' class=\"btn btn-default\"\n                id=\"Cancel\">Cancel</button>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div> -->\n<!-- Custom Form Validaton Ends -->"
 
 /***/ }),
 
@@ -113,7 +113,7 @@ module.exports = "<nb-card>\n  <nb-card-header>{{topHeader}}\n  </nb-card-header
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".errors {\n  color: red;\n  font-size: 13px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2hhcnNoaXQvRGVza3RvcC9uZ3gtd2lyZWZyYW1lL3NyYy9hcHAvcGFnZXMvcXVhbGl0eS9hZGQtZWRpdC1xdWFsaXR5L2FkZC1lZGl0LXF1YWxpdHkuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFVO0VBQ1YsZ0JBQWUsRUFDbEIiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9xdWFsaXR5L2FkZC1lZGl0LXF1YWxpdHkvYWRkLWVkaXQtcXVhbGl0eS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvcnMge1xuICAgIGNvbG9yOiByZWQ7XG4gICAgZm9udC1zaXplOiAxM3B4O1xufSJdfQ== */"
+module.exports = ".errors {\n  color: red;\n  font-size: 13px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy92YXJ1bmd1cHRhL0Rlc2t0b3AvYS9uZ3gtd2lyZWZyYW1lL3NyYy9hcHAvcGFnZXMvcXVhbGl0eS9hZGQtZWRpdC1xdWFsaXR5L2FkZC1lZGl0LXF1YWxpdHkuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFVO0VBQ1YsZ0JBQWUsRUFDbEIiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9xdWFsaXR5L2FkZC1lZGl0LXF1YWxpdHkvYWRkLWVkaXQtcXVhbGl0eS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvcnMge1xuICAgIGNvbG9yOiByZWQ7XG4gICAgZm9udC1zaXplOiAxM3B4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -133,6 +133,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_model_quality_class__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../@theme/model/quality-class */ "./src/app/@theme/model/quality-class.ts");
 /* harmony import */ var _theme_services_quality_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../@theme/services/quality.service */ "./src/app/@theme/services/quality.service.ts");
 /* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
+/* harmony import */ var _theme_model_user_class__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../@theme/model/user-class */ "./src/app/@theme/model/user-class.ts");
+/* harmony import */ var _theme_services_party_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../@theme/services/party.service */ "./src/app/@theme/services/party.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -148,21 +150,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var AddEditQualityComponent = /** @class */ (function () {
-    function AddEditQualityComponent(toasterService, route, router, qualityService, authService) {
+    function AddEditQualityComponent(toasterService, route, partyService, router, qualityService, authService) {
         var _this = this;
         this.toasterService = toasterService;
         this.route = route;
+        this.partyService = partyService;
         this.router = router;
         this.qualityService = qualityService;
         this.authService = authService;
         this.qualityTypeList = [];
         // qualityTypeList = [{ 'ID': '1', 'Name': 'Type1' }, { 'ID': '2', 'Name': 'Type2' }];
-        this.partyNameList = [{ 'ID': '1', 'Name': 'Party1' }, { 'ID': '2', 'Name': 'Party2' }];
+        this.partyNameList = [];
         this.qualitySubTypeList = [];
         this.subBtnName = '';
         this.topHeader = '';
         this.currentUserPermission = [];
+        this.viewPartyReqOb = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_6__["ViewReqObj"]();
         this.qualityModal = new _theme_model_quality_class__WEBPACK_IMPORTED_MODULE_3__["Quality"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
             if (ele != null) {
@@ -170,11 +176,13 @@ var AddEditQualityComponent = /** @class */ (function () {
                 _this.currentUserId = ele.user.user_id;
                 _this.currentUserHeadid = ele.user.user_head_id;
                 _this.currentUserPermission = ele.user_permission;
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
             }
         });
     }
     AddEditQualityComponent.prototype.ngOnInit = function () {
         this.getTypeList();
+        this.getPartyList();
         this.onPageLoad();
     };
     AddEditQualityComponent.prototype.ngOnDestroy = function () {
@@ -187,12 +195,8 @@ var AddEditQualityComponent = /** @class */ (function () {
             this.subBtnName = 'Update';
             this.topHeader = 'Edit Quality';
             this.qualityService.getQualityById(this.id).subscribe(function (data) {
-                //console.log("sdad" , data[0])
-                // data=data[0]
-                console.log(data);
                 if (!data[0].error) {
                     _this.qualityModal = data[0].data[0];
-                    //console.log("hjgh",this.qualityModal)
                     _this.getSubTypeList(_this.qualityModal.quality_type);
                 }
                 else {
@@ -222,12 +226,30 @@ var AddEditQualityComponent = /** @class */ (function () {
             _this.toasterService.error(error);
         });
     };
+    AddEditQualityComponent.prototype.getPartyList = function () {
+        var _this = this;
+        this.partyNameList = [];
+        this.viewPartyReqOb.view_group = true;
+        this.viewPartyReqOb.current_user_id = this.currentUserId;
+        this.viewPartyReqOb.user_head_id = this.currentUser.user_head_id;
+        this.viewPartyReqOb.group_user_ids = this.currentUserGroupUserIds;
+        this.partyService.getPartyList(this.viewPartyReqOb).subscribe(function (data) {
+            if (!data[0].error) {
+                _this.partyNameList = data[0].data;
+            }
+            else {
+                _this.toasterService.error(data[0].message);
+            }
+        }, function (error) {
+            _this.toasterService.error(error);
+        });
+    };
     AddEditQualityComponent.prototype.onTypeChange = function (event) {
         this.getSubTypeList(event);
     };
     AddEditQualityComponent.prototype.getSubTypeList = function (type) {
         var _this = this;
-        console.log(type);
+        // console.log(type)
         this.qualitySubTypeList = [];
         this.qualityService.getSubTypeListByType(type).subscribe(function (data) {
             // data = data[0]
@@ -250,10 +272,10 @@ var AddEditQualityComponent = /** @class */ (function () {
         if (this.id) {
             this.qualityModal.updated_by = this.currentUserId;
             this.qualityService.updateQuality(this.qualityModal).subscribe(function (data) {
-                console.log(data);
+                // console.log(data)
                 // data= data[0].data
-                console.log("in edit quality");
-                console.log(data);
+                // console.log("in edit quality")
+                // console.log(data)
                 if (!data[0].error) {
                     _this.toasterService.success("Updated Successfully");
                     form.resetForm();
@@ -270,7 +292,7 @@ var AddEditQualityComponent = /** @class */ (function () {
             //for add
             this.qualityModal.created_by = this.currentUserId;
             this.qualityModal.user_head_id = this.currentUserHeadid;
-            console.log(this.qualityModal);
+            // console.log(this.qualityModal)
             this.qualityService.addQuality(this.qualityModal).subscribe(function (data) {
                 // data = data[0]
                 if (!data[0].error) {
@@ -292,7 +314,7 @@ var AddEditQualityComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-edit-quality.component.html */ "./src/app/pages/quality/add-edit-quality/add-edit-quality.component.html"),
             styles: [__webpack_require__(/*! ./add-edit-quality.component.scss */ "./src/app/pages/quality/add-edit-quality/add-edit-quality.component.scss")]
         }),
-        __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_1__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_1__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _theme_services_party_service__WEBPACK_IMPORTED_MODULE_7__["PartyService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _theme_services_quality_service__WEBPACK_IMPORTED_MODULE_4__["QualityService"], _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
     ], AddEditQualityComponent);
     return AddEditQualityComponent;
@@ -589,6 +611,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var _theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../@theme/components/confirm-dialog/confirm-dialog.component */ "./src/app/@theme/components/confirm-dialog/confirm-dialog.component.ts");
 /* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
+/* harmony import */ var _theme_model_user_class__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../@theme/model/user-class */ "./src/app/@theme/model/user-class.ts");
+/* harmony import */ var _theme_services_party_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../@theme/services/party.service */ "./src/app/@theme/services/party.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -610,8 +634,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var ViewQualityComponent = /** @class */ (function () {
-    function ViewQualityComponent(toasterService, _http, permissionService, router, qualityService, printService, qzService, authService) {
+    function ViewQualityComponent(toasterService, _http, permissionService, router, qualityService, printService, qzService, authService, partyService) {
         var _this = this;
         this.toasterService = toasterService;
         this._http = _http;
@@ -621,13 +647,14 @@ var ViewQualityComponent = /** @class */ (function () {
         this.printService = printService;
         this.qzService = qzService;
         this.authService = authService;
+        this.partyService = partyService;
         this.columnDefs = [
             { headerName: 'Actions', field: 'entry_id', width: 100 },
             { headerName: 'Quality Id', field: 'quality_id', sortable: true, filter: 'agNumberColumnFilter' },
             { headerName: 'Quality Name', field: 'quality_name', sortable: true, filter: 'agDateColumnFilter' },
             { headerName: 'Quality Type', field: 'quality_type', sortable: true, filter: true },
             { headerName: 'Quality Sub Type', field: 'quality_sub_type', sortable: true, filter: true },
-            { headerName: 'Party Name', field: 'party_name', sortable: true, filter: true },
+            { headerName: 'Party Name', field: 'party_id', sortable: true, filter: true },
         ];
         this.addQualityPermission = 0;
         this.settings = {
@@ -651,7 +678,7 @@ var ViewQualityComponent = /** @class */ (function () {
                     title: 'Quality Sub Type',
                     filter: false,
                 },
-                party_name: {
+                party_id: {
                     title: 'Party Name',
                     filter: false,
                 },
@@ -680,11 +707,20 @@ var ViewQualityComponent = /** @class */ (function () {
         this.viewOwnDataPermission = false;
         this.viewGroupDataPermission = false;
         this.radioSelected = 1;
+        this.viewGroup = false;
+        this.viewOwn = false;
+        this.viewAll = false;
+        this.partyNameList = [];
+        this.qualityReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_12__["ViewReqObj"]();
+        this.viewPartyReqOb = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_12__["ViewReqObj"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
             if (ele != null) {
                 _this.currentUser = ele.user;
                 _this.currentUserId = ele.user.user_id;
                 _this.currentUserPermission = ele.user_permission;
+                // console.log("ele",ele)
+                _this.currentUserGroupUserIds = ele.user.group_user_ids;
+                // this.currentUserGroupUserIds = ele.group_user_ids;
             }
         });
         this.setColumns();
@@ -699,13 +735,35 @@ var ViewQualityComponent = /** @class */ (function () {
                     _this.viewGroupDataPermission = ele.can_view_group;
                     _this.viewOwnDataPermission = ele.can_view;
                     _this.addQualityPermission = 1;
+                    _this.qualityReqObj.current_user_id = _this.currentUserId;
+                    _this.qualityReqObj.user_head_id = _this.currentUser.user_head_id;
+                    _this.qualityReqObj.group_user_ids = _this.currentUserGroupUserIds;
                 }
             });
+            this.getPartyList();
         }
         this.getQualityData();
     };
     ViewQualityComponent.prototype.ngOnDestroy = function () {
         this.currentUser$.unsubscribe();
+    };
+    ViewQualityComponent.prototype.getPartyList = function () {
+        var _this = this;
+        this.partyNameList = [];
+        this.viewPartyReqOb.view_group = true;
+        this.viewPartyReqOb.current_user_id = this.currentUserId;
+        this.viewPartyReqOb.user_head_id = this.currentUser.user_head_id;
+        this.viewPartyReqOb.group_user_ids = this.currentUserGroupUserIds;
+        this.partyService.getPartyList(this.viewPartyReqOb).subscribe(function (data) {
+            if (!data[0].error) {
+                _this.partyNameList = data[0].data;
+            }
+            else {
+                _this.toasterService.error(data[0].message);
+            }
+        }, function (error) {
+            _this.toasterService.error(error);
+        });
     };
     ViewQualityComponent.prototype.setColumns = function () {
         var _this = this;
@@ -738,28 +796,28 @@ var ViewQualityComponent = /** @class */ (function () {
     };
     ViewQualityComponent.prototype.getQualityData = function (value) {
         var _this = this;
-        var body = {
-            created_by: null,
-            user_head_id: null
-        };
-        if (value) {
+        this.qualityReqObj.view_all = false;
+        this.qualityReqObj.view_group = false;
+        this.qualityReqObj.view_own = false;
+        if (value)
             this.radioSelected = value;
-        }
-        if (this.viewOwnDataPermission && this.radioSelected == 1) {
-            body.created_by = this.currentUserId;
-        }
-        if (this.viewGroupDataPermission && this.radioSelected == 2) {
-            body.created_by = this.currentUserId;
-            body.user_head_id = this.currentUser.user_head_id;
-        }
-        if (this.viewAllDataPermission && this.radioSelected == 3) {
-            body.created_by = null;
-            body.user_head_id = null;
-        }
-        this.qualityService.getAllQualityData(body).subscribe(function (data) {
+        //check which radio button is selected
+        if (this.radioSelected == 1)
+            this.qualityReqObj.view_own = true;
+        else if (this.radioSelected == 2)
+            this.qualityReqObj.view_group = true;
+        else if (this.radioSelected == 3)
+            this.qualityReqObj.view_all = true;
+        this.qualityService.getAllQualityData(this.qualityReqObj).subscribe(function (data) {
             if (!data[0].error) {
-                _this.rowData = data[0].data;
                 _this.qualityList = data[0].data;
+                _this.qualityList.forEach(function (ele) {
+                    var i = _this.partyNameList.findIndex(function (v) { return v.entry_id == ele.party_id; });
+                    if (i > -1) {
+                        ele.party_id = _this.partyNameList[i].party_name;
+                    }
+                });
+                _this.rowData = _this.qualityList;
                 _this.source = new ng2_smart_table__WEBPACK_IMPORTED_MODULE_1__["LocalDataSource"](_this.qualityList);
             }
             else
@@ -774,7 +832,7 @@ var ViewQualityComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _theme_services_permission_service__WEBPACK_IMPORTED_MODULE_4__["PermissionService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _theme_services_quality_service__WEBPACK_IMPORTED_MODULE_6__["QualityService"], _theme_services_print_service__WEBPACK_IMPORTED_MODULE_7__["PrintService"], _theme_services_qz_tray_service__WEBPACK_IMPORTED_MODULE_8__["QzTrayService"],
-            _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"]])
+            _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"], _theme_services_party_service__WEBPACK_IMPORTED_MODULE_13__["PartyService"]])
     ], ViewQualityComponent);
     return ViewQualityComponent;
 }());

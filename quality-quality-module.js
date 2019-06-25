@@ -1,19 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["quality-quality-module"],{
 
-/***/ "./src/app/@theme/services/permission.service.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/@theme/services/permission.service.ts ***!
-  \*******************************************************/
-/*! exports provided: PermissionService */
+/***/ "./src/app/@theme/services/party.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/@theme/services/party.service.ts ***!
+  \**************************************************/
+/*! exports provided: PartyService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PermissionService", function() { return PermissionService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PartyService", function() { return PartyService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
-/* harmony import */ var _components_permission_permission_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/permission/permission.component */ "./src/app/@theme/components/permission/permission.component.ts");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -25,28 +23,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
-
-var PermissionService = /** @class */ (function () {
-    function PermissionService(modalService, apiService) {
-        this.modalService = modalService;
+var PartyService = /** @class */ (function () {
+    function PartyService(apiService) {
         this.apiService = apiService;
     }
-    PermissionService.prototype.callPermissionView = function (title, message) {
-        var dialogRef = this.modalService.open(_components_permission_permission_component__WEBPACK_IMPORTED_MODULE_3__["PermissionComponent"]);
-        dialogRef.componentInstance.message = message;
-        dialogRef.componentInstance.titleFrom = title;
-        dialogRef.result.then(function (result) {
-            return result;
-        });
+    PartyService.prototype.getPartyList = function (obj) {
+        return this.apiService.apiCaller('post', '/partyData', obj);
     };
-    PermissionService = __decorate([
+    PartyService.prototype.updateParty = function (party) {
+        return this.apiService.apiCaller('post', '/updateParty', party);
+    };
+    PartyService.prototype.addParty = function (party) {
+        return this.apiService.apiCaller('post', '/addParty', party);
+    };
+    PartyService.prototype.deleteParty = function (id) {
+        return this.apiService.apiCaller('get', '/deleteParty/' + id);
+    };
+    PartyService.prototype.getPartyById = function (id) {
+        return this.apiService.apiCaller('get', '/getPartyById/' + id);
+    };
+    PartyService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"], _api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"]])
-    ], PermissionService);
-    return PermissionService;
+        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+    ], PartyService);
+    return PartyService;
 }());
 
 
@@ -82,6 +84,9 @@ var QualityService = /** @class */ (function () {
     }
     QualityService.prototype.getAllQualityData = function (data) {
         return this.apiService.apiCaller('post', '/qualityData', data);
+    };
+    QualityService.prototype.getAllQualityByPartyId = function (data) {
+        return this.apiService.apiCaller('post', '/getQualityByPartyId', data);
     };
     QualityService.prototype.addQuality = function (quality) {
         return this.apiService.apiCaller('post', '/addQuality', quality);
