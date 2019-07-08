@@ -1,5 +1,43 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5"],{
 
+/***/ "./src/app/@theme/model/batch-class.ts":
+/*!*********************************************!*\
+  !*** ./src/app/@theme/model/batch-class.ts ***!
+  \*********************************************/
+/*! exports provided: BatchMast, BatchData, BatchWeightMtrDetail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BatchMast", function() { return BatchMast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BatchData", function() { return BatchData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BatchWeightMtrDetail", function() { return BatchWeightMtrDetail; });
+var BatchMast = /** @class */ (function () {
+    function BatchMast() {
+        this.quality_entry_id = '';
+    }
+    return BatchMast;
+}());
+
+var BatchData = /** @class */ (function () {
+    function BatchData() {
+        // this.gr = '';
+        this.unit = '';
+    }
+    return BatchData;
+}());
+
+var BatchWeightMtrDetail = /** @class */ (function () {
+    function BatchWeightMtrDetail() {
+        this.quantity = '';
+    }
+    return BatchWeightMtrDetail;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/@theme/model/fabric-in-class.ts":
 /*!*************************************************!*\
   !*** ./src/app/@theme/model/fabric-in-class.ts ***!
@@ -22,6 +60,67 @@ var FabricInRecord = /** @class */ (function () {
     function FabricInRecord() {
     }
     return FabricInRecord;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/@theme/services/batch.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/@theme/services/batch.service.ts ***!
+  \**************************************************/
+/*! exports provided: BatchService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BatchService", function() { return BatchService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BatchService = /** @class */ (function () {
+    function BatchService(apiService) {
+        this.apiService = apiService;
+    }
+    BatchService.prototype.getAllBatchs = function (batchReqObj) {
+        return this.apiService.apiCaller('post', '/batchList', batchReqObj);
+    };
+    BatchService.prototype.getAllBatchByQualityId = function (batchReqObj) {
+        return this.apiService.apiCaller('post', '/batchListByQualityId', batchReqObj);
+    };
+    BatchService.prototype.addBatch = function (batch) {
+        return this.apiService.apiCaller('post', '/addBatch', batch);
+    };
+    BatchService.prototype.getBatchById = function (id) {
+        return this.apiService.apiCaller('get', '/getBatchById/' + id);
+    };
+    BatchService.prototype.getGrListByQualityId = function (id) {
+        return this.apiService.apiCaller('get', '/getGrListByQualityId/' + id);
+    };
+    BatchService.prototype.updateBatch = function (batch) {
+        return this.apiService.apiCaller('post', '/updateBatch', batch);
+    };
+    BatchService.prototype.deleteBatchById = function (id) {
+        return this.apiService.apiCaller('get', '/deleteBatch/' + id);
+    };
+    BatchService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+    ], BatchService);
+    return BatchService;
 }());
 
 
@@ -171,6 +270,9 @@ var QualityService = /** @class */ (function () {
     QualityService.prototype.getAllQualityData = function (data) {
         return this.apiService.apiCaller('post', '/qualityData', data);
     };
+    QualityService.prototype.getAllQualityFilterData = function (data) {
+        return this.apiService.apiCaller('post', '/qualityFilterData', data);
+    };
     QualityService.prototype.getAllQualityByPartyId = function (data) {
         return this.apiService.apiCaller('post', '/getQualityByPartyId', data);
     };
@@ -250,6 +352,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_model_user_class__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../@theme/model/user-class */ "./src/app/@theme/model/user-class.ts");
 /* harmony import */ var _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../@theme/services/auth.service */ "./src/app/@theme/services/auth.service.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _theme_model_batch_class__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../@theme/model/batch-class */ "./src/app/@theme/model/batch-class.ts");
+/* harmony import */ var _theme_services_batch_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../@theme/services/batch.service */ "./src/app/@theme/services/batch.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -271,8 +375,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var AddEditFabricInComponent = /** @class */ (function () {
-    function AddEditFabricInComponent(toasterService, route, partyService, router, fabricService, qualityService, datePipe, authService) {
+    function AddEditFabricInComponent(toasterService, route, partyService, router, fabricService, qualityService, datePipe, _modalService, batchService, authService) {
         var _this = this;
         this.toasterService = toasterService;
         this.route = route;
@@ -281,6 +387,8 @@ var AddEditFabricInComponent = /** @class */ (function () {
         this.fabricService = fabricService;
         this.qualityService = qualityService;
         this.datePipe = datePipe;
+        this._modalService = _modalService;
+        this.batchService = batchService;
         this.authService = authService;
         this.subBtnName = '';
         this.topHeader = '';
@@ -290,6 +398,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
         this.qualityList = [];
         this.qualityViewReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_9__["ViewReqObj"]();
         this.currentUserPermission = [];
+        this.batchDataArray = [];
         this.columnDefs = [
             { headerName: 'Actions', field: 'index' },
             { headerName: 'Gr', field: 'gr' },
@@ -302,6 +411,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
             { headerName: 'No. of Boxes', field: 'no_of_boxes' },
         ];
         this.partyReqObj = new _theme_model_user_class__WEBPACK_IMPORTED_MODULE_9__["ViewReqObj"]();
+        this.isBatchInitialFlag = 0;
         this.fabricModal = new _theme_model_fabric_in_class__WEBPACK_IMPORTED_MODULE_4__["Fabric"]();
         this.record = new _theme_model_fabric_in_class__WEBPACK_IMPORTED_MODULE_4__["FabricInRecord"]();
         this.currentUser$ = this.authService.currentUser.subscribe(function (ele) {
@@ -310,6 +420,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
                 _this.currentUserId = ele.user.user_id;
                 _this.currentUserPermission = ele.user_permission;
                 _this.currentUserGroupUserIds = ele.user.group_user_ids;
+                _this.currentUserHeadid = ele.user.user_head_id;
             }
         });
         this.setColumns();
@@ -395,6 +506,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
                             ele.quality_type = _this.qualityList[i].quality_type;
                         }
                     });
+                    _this.isBatchInitialFlag = _this.fabricModal.batch;
                     _this.rowData = _this.fabricRecord.slice();
                     _this.fabricModal.fabric_record = _this.fabricRecord;
                 }
@@ -424,7 +536,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
         if (this.fabricRecord.length) {
             this.record.index = j;
         }
-        else {
+        else if (this.record.index == undefined) {
             this.record.index = this.fabricRecord.length + 1;
         }
         this.fabricRecord.forEach(function (ele) {
@@ -451,6 +563,88 @@ var AddEditFabricInComponent = /** @class */ (function () {
     };
     AddEditFabricInComponent.prototype.onCustomFormSubmit = function (form) {
         var _this = this;
+        if (this.fabricModal.batch) {
+            var qualityMatchCount_1 = 0;
+            if (this.fabricRecord.length) {
+                var match_1 = this.fabricRecord[0].quality_entry_id;
+                this.fabricRecord.forEach(function (ele) {
+                    if (ele.quality_entry_id == match_1) {
+                        qualityMatchCount_1++;
+                    }
+                });
+                if (qualityMatchCount_1 == this.fabricRecord.length) {
+                    this.addUpdateFabricForm(form);
+                    this.batchModal = new _theme_model_batch_class__WEBPACK_IMPORTED_MODULE_12__["BatchMast"]();
+                    this.batchDataArray = [];
+                    this.batchModal.quality_entry_id = match_1;
+                    this.batchModal.remark = this.fabricModal.remark;
+                    this.fabricRecord.forEach(function (record) {
+                        var batchRecord = new _theme_model_batch_class__WEBPACK_IMPORTED_MODULE_12__["BatchData"]();
+                        batchRecord.gr = record.gr;
+                        batchRecord.no_of_cones_taka = record.no_of_cones;
+                        batchRecord.mtr = record.mtr;
+                        batchRecord.wt = record.wt;
+                        batchRecord.batch_quality_detail = [];
+                        _this.batchDataArray.push(batchRecord);
+                    });
+                    this.batchModal.batch_data = this.batchDataArray;
+                    if (this.id && this.isBatchInitialFlag) {
+                        // this.batchModal.updated_by = this.currentUserId;
+                        // this.batchService.updateBatch(this.batchModal).subscribe(data => {
+                        //   console.log(data)
+                        //   if (!data[0].error) {
+                        //     this.toasterService.success(data[0].message);
+                        //     form.resetForm();
+                        //     this.router.navigate(['/pages/batch/view-batch-list']);
+                        //   } else {
+                        //     this.toasterService.error(data[0].message);
+                        //   }
+                        // }, error => {
+                        //   this.toasterService.error('Server Error');
+                        // });
+                    }
+                    else {
+                        this.batchModal.user_head_id = this.currentUserHeadid;
+                        this.batchModal.created_by = this.currentUserId;
+                        console.log(this.batchModal);
+                        this.batchService.addBatch(this.batchModal).subscribe(function (data) {
+                            data = data[0];
+                            if (!data.error) {
+                                _this.toasterService.success(data.message);
+                                form.resetForm();
+                                _this.router.navigate(['/pages/batch/view-batch-list']);
+                            }
+                            else {
+                                _this.toasterService.error(data.message);
+                            }
+                        }, function (error) {
+                            _this.toasterService.error('Server Error');
+                        });
+                    }
+                }
+                else {
+                    this.fabricModal.batch = 0;
+                    var modalRef = this._modalService.open(_theme_components_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_8__["ConfirmDialogComponent"]);
+                    modalRef.componentInstance.titleFrom = 'Cannot Be A Batch ';
+                    modalRef.componentInstance.message = 'Quality should be of same ID to add this as a Batch. Do you want to still update details without batch?';
+                    modalRef.result
+                        .then(function (result) {
+                        if (result) {
+                            _this.addUpdateFabricForm(form);
+                        }
+                        else {
+                            _this.toasterService.info('Quality should be of same ID to add this as a Batch');
+                        }
+                    });
+                }
+            }
+        }
+        else {
+            this.addUpdateFabricForm(form);
+        }
+    };
+    AddEditFabricInComponent.prototype.addUpdateFabricForm = function (form) {
+        var _this = this;
         this.fabricModal.fabric_record = this.fabricRecord;
         console.log('bill', this.fabricModal);
         // for update
@@ -473,6 +667,8 @@ var AddEditFabricInComponent = /** @class */ (function () {
         }
         else {
             //for add
+            this.fabricModal.created_by = this.currentUserId;
+            this.fabricModal.user_head_id = this.currentUserHeadid;
             console.log(this.fabricModal);
             this.fabricService.addFabricIn(this.fabricModal).subscribe(function (data) {
                 data = data[0];
@@ -497,7 +693,7 @@ var AddEditFabricInComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_1__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _theme_services_party_service__WEBPACK_IMPORTED_MODULE_6__["PartyService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _theme_services_fabric_in_service__WEBPACK_IMPORTED_MODULE_5__["FabricInService"], _theme_services_quality_service__WEBPACK_IMPORTED_MODULE_7__["QualityService"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_11__["DatePipe"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_11__["DatePipe"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbModal"], _theme_services_batch_service__WEBPACK_IMPORTED_MODULE_13__["BatchService"],
             _theme_services_auth_service__WEBPACK_IMPORTED_MODULE_10__["AuthService"]])
     ], AddEditFabricInComponent);
     return AddEditFabricInComponent;

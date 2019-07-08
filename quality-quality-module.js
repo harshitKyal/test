@@ -85,6 +85,9 @@ var QualityService = /** @class */ (function () {
     QualityService.prototype.getAllQualityData = function (data) {
         return this.apiService.apiCaller('post', '/qualityData', data);
     };
+    QualityService.prototype.getAllQualityFilterData = function (data) {
+        return this.apiService.apiCaller('post', '/qualityFilterData', data);
+    };
     QualityService.prototype.getAllQualityByPartyId = function (data) {
         return this.apiService.apiCaller('post', '/getQualityByPartyId', data);
     };

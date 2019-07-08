@@ -736,6 +736,10 @@ var routes = [{
                 loadChildren: './process/process.module#ProcessModule',
             },
             {
+                path: 'process-planning',
+                loadChildren: './process-planning/process-planning.module#ProcessPlanningModule',
+            },
+            {
                 path: 'supplier',
                 loadChildren: './supplier/supplier.module#SupplierModule',
                 canActivate: [_theme_guard_supplier_guard_service__WEBPACK_IMPORTED_MODULE_8__["SupplierGuardService"]],

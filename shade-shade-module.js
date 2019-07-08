@@ -1,5 +1,63 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["shade-shade-module"],{
 
+/***/ "./src/app/@theme/services/process.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/@theme/services/process.service.ts ***!
+  \****************************************************/
+/*! exports provided: ProcessService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProcessService", function() { return ProcessService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ProcessService = /** @class */ (function () {
+    function ProcessService(apiService) {
+        this.apiService = apiService;
+    }
+    ProcessService.prototype.getAllProcesss = function (processReqObj) {
+        return this.apiService.apiCaller('post', '/processList', processReqObj);
+    };
+    ProcessService.prototype.getProcessGivenByList = function (processReqObj) {
+        return this.apiService.apiCaller('post', '/processGivenByList', processReqObj);
+    };
+    ProcessService.prototype.addProcess = function (process) {
+        return this.apiService.apiCaller('post', '/addProcess', process);
+    };
+    ProcessService.prototype.getProcessById = function (id) {
+        return this.apiService.apiCaller('get', '/getProcessById/' + id);
+    };
+    ProcessService.prototype.updateProcess = function (process) {
+        return this.apiService.apiCaller('post', '/updateProcess', process);
+    };
+    ProcessService.prototype.deleteProcessById = function (id) {
+        return this.apiService.apiCaller('get', '/deleteProcess/' + id);
+    };
+    ProcessService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+    ], ProcessService);
+    return ProcessService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/@theme/services/shade.service.ts":
 /*!**************************************************!*\
   !*** ./src/app/@theme/services/shade.service.ts ***!
@@ -29,6 +87,9 @@ var ShadeService = /** @class */ (function () {
     }
     ShadeService.prototype.getAllShades = function (shadeReqObj) {
         return this.apiService.apiCaller('post', '/shadeList', shadeReqObj);
+    };
+    ShadeService.prototype.getShadesByFilter = function (shadeReqObj) {
+        return this.apiService.apiCaller('post', '/shadeFilterList', shadeReqObj);
     };
     ShadeService.prototype.getShadesByQualityId = function (shadeReqObj) {
         return this.apiService.apiCaller('post', '/shadeListByQualityId', shadeReqObj);

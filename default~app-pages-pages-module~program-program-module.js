@@ -58,6 +58,9 @@ var ProgramService = /** @class */ (function () {
     ProgramService.prototype.getAllPrograms = function (programReqObj) {
         return this.apiService.apiCaller('post', '/programList', programReqObj);
     };
+    ProgramService.prototype.getProgramsByFilter = function (programReqObj) {
+        return this.apiService.apiCaller('post', '/programListByFilter', programReqObj);
+    };
     ProgramService.prototype.getProgramGivenByList = function (programReqObj) {
         return this.apiService.apiCaller('post', '/programGivenByList', programReqObj);
     };
@@ -115,6 +118,9 @@ var ShadeService = /** @class */ (function () {
     }
     ShadeService.prototype.getAllShades = function (shadeReqObj) {
         return this.apiService.apiCaller('post', '/shadeList', shadeReqObj);
+    };
+    ShadeService.prototype.getShadesByFilter = function (shadeReqObj) {
+        return this.apiService.apiCaller('post', '/shadeFilterList', shadeReqObj);
     };
     ShadeService.prototype.getShadesByQualityId = function (shadeReqObj) {
         return this.apiService.apiCaller('post', '/shadeListByQualityId', shadeReqObj);
@@ -501,7 +507,7 @@ var AddEditProgramComponent = /** @class */ (function () {
         if (!this.programRecord.length) {
             this.record.index = j;
         }
-        else {
+        else if (this.record.index == undefined) {
             this.record.index = this.programRecord.length + 1;
         }
         this.programRecord.forEach(function (ele) {
