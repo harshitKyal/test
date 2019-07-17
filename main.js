@@ -8,129 +8,108 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./auth/auth.module": [
+		"./src/app/auth/auth.module.ts",
+		"common",
+		"auth-auth-module"
+	],
 	"./batch/batch.module": [
 		"./src/app/pages/batch/batch.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~batch-batch-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
 		"batch-batch-module"
 	],
 	"./colour-stock/colour-stock.module": [
 		"./src/app/pages/colour-stock/colour-stock.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~colour-stock-colour-stock-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
 		"colour-stock-colour-stock-module"
 	],
 	"./fabric-in/fabric-in.module": [
 		"./src/app/pages/fabric-in/fabric-in.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module",
-		"common"
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
+		"default~fabric-in-fabric-in-module~program-program-module~shade-shade-module~supplier-supplier-modul~83e77d03",
+		"common",
+		"fabric-in-fabric-in-module"
 	],
 	"./miscellaneous/miscellaneous.module": [
 		"./src/app/pages/miscellaneous/miscellaneous.module.ts",
 		"common"
 	],
+	"./pages/pages.module": [
+		"./src/app/pages/pages.module.ts",
+		"common",
+		"pages-pages-module"
+	],
 	"./party/party.module": [
 		"./src/app/pages/party/party.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~party-party-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
 		"party-party-module"
 	],
 	"./process-planning/process-planning.module": [
 		"./src/app/pages/process-planning/process-planning.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
 		"process-planning-process-planning-module"
 	],
 	"./process/process.module": [
 		"./src/app/pages/process/process.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~process-process-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
 		"process-process-module"
 	],
 	"./program/program.module": [
 		"./src/app/pages/program/program.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5",
-		"default~app-pages-pages-module~program-program-module",
-		"common"
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
+		"default~fabric-in-fabric-in-module~program-program-module~shade-shade-module~supplier-supplier-modul~83e77d03",
+		"common",
+		"program-program-module"
 	],
 	"./quality/quality.module": [
 		"./src/app/pages/quality/quality.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~quality-quality-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
 		"common",
 		"quality-quality-module"
 	],
 	"./shade/shade.module": [
 		"./src/app/pages/shade/shade.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5",
-		"default~app-pages-pages-module~shade-shade-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
+		"default~fabric-in-fabric-in-module~program-program-module~shade-shade-module~supplier-supplier-modul~83e77d03",
 		"common",
 		"shade-shade-module"
 	],
 	"./supplier/supplier.module": [
 		"./src/app/pages/supplier/supplier.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5",
-		"default~app-pages-pages-module~supplier-supplier-module",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~6bb4dcf4",
+		"default~fabric-in-fabric-in-module~program-program-module~shade-shade-module~supplier-supplier-modul~83e77d03",
 		"common",
 		"supplier-supplier-module"
 	],
 	"./user/user.module": [
 		"./src/app/pages/user/user.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~user-user-module",
-		"common"
-	],
-	"app/auth/auth.module": [
-		"./src/app/auth/auth.module.ts",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~bc9e406e",
+		"default~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-in-module~party-party-m~1283e41a",
 		"common",
-		"app-auth-auth-module"
-	],
-	"app/pages/pages.module": [
-		"./src/app/pages/pages.module.ts",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~efab984b",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~51b7bb00",
-		"default~app-pages-pages-module~batch-batch-module~colour-stock-colour-stock-module~fabric-in-fabric-~22935d7a",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module~program-program-module~shade-shade-module~~bdb6f9b5",
-		"default~app-pages-pages-module~user-user-module",
-		"default~app-pages-pages-module~batch-batch-module",
-		"default~app-pages-pages-module~process-process-module",
-		"default~app-pages-pages-module~program-program-module",
-		"default~app-pages-pages-module~supplier-supplier-module",
-		"default~app-pages-pages-module~colour-stock-colour-stock-module",
-		"default~app-pages-pages-module~shade-shade-module",
-		"default~app-pages-pages-module~quality-quality-module",
-		"default~app-pages-pages-module~party-party-module",
-		"default~app-pages-pages-module~fabric-in-fabric-in-module",
-		"common",
-		"app-pages-pages-module"
+		"user-user-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -3397,10 +3376,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 var routes = [
-    { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule', canActivate: [_theme_guard_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+    { path: 'pages', loadChildren: './pages/pages.module#PagesModule', canActivate: [_theme_guard_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
     {
         path: 'auth',
-        loadChildren: 'app/auth/auth.module#NgxAuthModule',
+        loadChildren: './auth/auth.module#NgxAuthModule',
     },
     { path: '', redirectTo: 'pages', pathMatch: 'full' },
     { path: '**', redirectTo: 'pages' },
@@ -3421,7 +3400,7 @@ var routes = [
     }
 ];
 var config = {
-    useHash: true,
+    useHash: true
 };
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

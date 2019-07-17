@@ -252,67 +252,6 @@ var ProcessPlanningService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/@theme/services/program.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/@theme/services/program.service.ts ***!
-  \****************************************************/
-/*! exports provided: ProgramService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProgramService", function() { return ProgramService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ProgramService = /** @class */ (function () {
-    function ProgramService(apiService) {
-        this.apiService = apiService;
-    }
-    ProgramService.prototype.getAllPrograms = function (programReqObj) {
-        return this.apiService.apiCaller('post', '/programList', programReqObj);
-    };
-    ProgramService.prototype.getProgramsByFilter = function (programReqObj) {
-        return this.apiService.apiCaller('post', '/programListByFilter', programReqObj);
-    };
-    ProgramService.prototype.getProgramGivenByList = function (programReqObj) {
-        return this.apiService.apiCaller('post', '/programGivenByList', programReqObj);
-    };
-    ProgramService.prototype.addProgram = function (program) {
-        return this.apiService.apiCaller('post', '/addProgram', program);
-    };
-    ProgramService.prototype.getProgramById = function (id) {
-        return this.apiService.apiCaller('get', '/getProgramById/' + id);
-    };
-    ProgramService.prototype.updateProgram = function (program) {
-        return this.apiService.apiCaller('post', '/updateProgram', program);
-    };
-    ProgramService.prototype.deleteProgramById = function (id) {
-        return this.apiService.apiCaller('get', '/deleteProgram/' + id);
-    };
-    ProgramService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
-    ], ProgramService);
-    return ProgramService;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/@theme/services/quality.service.ts":
 /*!****************************************************!*\
   !*** ./src/app/@theme/services/quality.service.ts ***!
@@ -374,67 +313,6 @@ var QualityService = /** @class */ (function () {
         __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
     ], QualityService);
     return QualityService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/@theme/services/shade.service.ts":
-/*!**************************************************!*\
-  !*** ./src/app/@theme/services/shade.service.ts ***!
-  \**************************************************/
-/*! exports provided: ShadeService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShadeService", function() { return ShadeService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.service */ "./src/app/@theme/services/api.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ShadeService = /** @class */ (function () {
-    function ShadeService(apiService) {
-        this.apiService = apiService;
-    }
-    ShadeService.prototype.getAllShades = function (shadeReqObj) {
-        return this.apiService.apiCaller('post', '/shadeList', shadeReqObj);
-    };
-    ShadeService.prototype.getShadesByFilter = function (shadeReqObj) {
-        return this.apiService.apiCaller('post', '/shadeFilterList', shadeReqObj);
-    };
-    ShadeService.prototype.getShadesByQualityId = function (shadeReqObj) {
-        return this.apiService.apiCaller('post', '/shadeListByQualityId', shadeReqObj);
-    };
-    ShadeService.prototype.addShade = function (shade) {
-        return this.apiService.apiCaller('post', '/addShade', shade);
-    };
-    ShadeService.prototype.getShadeById = function (id) {
-        return this.apiService.apiCaller('get', '/getShadeById/' + id);
-    };
-    ShadeService.prototype.updateShade = function (shade) {
-        return this.apiService.apiCaller('post', '/updateShade', shade);
-    };
-    ShadeService.prototype.deleteShadeById = function (id) {
-        return this.apiService.apiCaller('get', '/deleteShade/' + id);
-    };
-    ShadeService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
-    ], ShadeService);
-    return ShadeService;
 }());
 
 
